@@ -1,18 +1,18 @@
 class Team
-  attr_reader :name, :location, :players
+  attr_reader :name, :location, :roster
   def initialize(name, location)
     @name = name
     @location = location
-    @players = []
+    @roster = []
   end
 
   def add_player (player)
-    @players << player
+    @roster << player
   end
 
   def long_term_players
     long_term = []
-    @players.each do |player|
+    @roster.each do |player|
       if player.contract_length >= 30
         long_term << player
       end
@@ -22,7 +22,7 @@ class Team
 
   def short_term_players
     short_term = []
-    @players.each do |player|
+    @roster.each do |player|
       if player.contract_length <= 29
         short_term << player
       end
@@ -32,14 +32,14 @@ class Team
 
   def total_value
     all_costs = []
-    @players.each do |player|
+    @roster.each do |player|
       all_costs << player.total_cost
     end
     all_costs.sum
   end
 
   def player_count
-    @players.count
+    @roster.count
   end
 
   def details
