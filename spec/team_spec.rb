@@ -8,30 +8,61 @@ RSpec.describe Team do
     @player_2 = Player.new("Kenny DeNunez", 500000, 24)
     @player_3 = Player.new("Alan McClennan", 750000, 48)
     @player_4 = Player.new("Hamilton Porter", 100000, 12)
-    @players = []
-    @team.add_player(@player_1)
-    @team.add_player(@player_2)
-    @team.add_player(@player_3)
-    @team.add_player(@player_4)
+    @roster = []
   end
 
   it '#initialize' do
     expect(@team).to be_an_instance_of(Team)
   end
 
+  it 'has roster' do
+    expect(@team.roster).to eq([])
+  end
+
+  it 'can count players' do
+    expect(@team.player_count).to eq(0)
+  end
+
+  it 'can add players' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    expect(@team.roster).to eq([@player_1, @player_2])
+    expect(@team.player_count).to eq(2)
+  end
+
   it 'has long term players' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
     expect(@team.long_term_players).to eq([@player_1, @player_3])
   end
 
   it 'has short term players' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
     expect(@team.short_term_players).to eq([@player_2, @player_4])
   end
 
   it 'has total value' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
     expect(@team.total_value).to eq(85200000)
   end
 
   it 'has team details' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
     expect(@team.details).to eq({"total_value" => 85200000, "player_count" => 4})
   end
 end
