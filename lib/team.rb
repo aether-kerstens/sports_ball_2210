@@ -48,4 +48,18 @@ class Team
     team_details["total_value"] = total_value
     team_details
   end
+
+  def average_cost_of_player
+    average_cost = (total_value/player_count)
+    print "$#{average_cost}"
+  end
+  #been strugglign to figure out how to
+  def players_by_last_name
+    alphabet_names = []
+    @roster.each do |player|
+      alphabet_names << player.last_name
+    end
+    alphabet_names.sort!
+    # haven't found a way to flatten it
+  end
 end
