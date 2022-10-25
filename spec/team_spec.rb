@@ -65,4 +65,22 @@ RSpec.describe Team do
 
     expect(@team.details).to eq({"total_value" => 85200000, "player_count" => 4})
   end
+
+  it 'can calculate average cost of player' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
+    expect(@team.average_cost_of_player).to eq("#$21,300,000")
+  end
+  
+  it 'orders players by last name alphabetically' do
+    @team.add_player(@player_1)
+    @team.add_player(@player_2)
+    @team.add_player(@player_3)
+    @team.add_player(@player_4)
+
+    expect(@team.players_by_last_name).to eq("DeNunez, McClennan, Palledorous, Porter")
+  end
 end
